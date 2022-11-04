@@ -1,0 +1,24 @@
+{
+  "name": "cep-backend",
+  "version": "1.0.0",
+  "description": "Collaborative-ELearning-Platform",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SushanPoojary/Collaborative-E-Learning-Platform.git"
+  },
+  "author": "Sushan Poojary, Hrugved Pawar, Anujot Singh, Rutuja Palatkar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SushanPoojary/Collaborative-E-Learning-Platform/issues"
+  },
+  "homepage": "https://github.com/SushanPoojary/Collaborative-E-Learning-Platform#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.7.1",
+    "nodemon": "^2.0.20"
+  }
+}
