@@ -36,6 +36,7 @@ export default function SignUp() {
     const data = new FormData(event.currentTarget);
     console.log({
       rt: data.get('registration-type'),
+      username: data.get('username'),
       email: data.get('email'),
       password: data.get('password'),
     });
@@ -60,6 +61,16 @@ export default function SignUp() {
             Register
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="User Name"
+              name="username"
+              autoComplete="username"
+              autoFocus
+            />
             <TextField
               margin="normal"
               required

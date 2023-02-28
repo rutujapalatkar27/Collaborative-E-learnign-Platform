@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -48,7 +48,7 @@ export default function SignIn() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOpenOutlinedIcon />
+            <SchoolOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Login
