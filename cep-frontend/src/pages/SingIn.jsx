@@ -8,6 +8,9 @@ import Box from '@mui/material/Box';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { backendURL } from '../utils/config';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright(props) {
@@ -26,6 +29,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+  let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -33,6 +37,21 @@ export default function SignIn() {
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    axios.post(`${backendURL}/signin`, {
+        'email': data.get('email'),
+        'password': data.get('password')
+      })
+      .then((response) => {
+        if(response.status === 200) {
+          console.log("User logedin successfully: ", response.data);
+          //navigate('/home');
+        }
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+        alert("Login Failed!");
+    })
   };
 
   return (
