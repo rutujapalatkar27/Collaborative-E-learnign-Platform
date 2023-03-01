@@ -45,7 +45,10 @@ export default function SignIn() {
       .then((response) => {
         if(response.status === 200) {
           console.log("User logedin successfully: ", response.data);
-          //navigate('/home');
+        //   localStorage.setItem('email', response.data.email);
+        //   localStorage.setItem('username', response.data.username);
+        //   localStorage.setItem('type', response.data.type);
+        //   navigate('/home');
         }
       })
       .catch((error) => {
