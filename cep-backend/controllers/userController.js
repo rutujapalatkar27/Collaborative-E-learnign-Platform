@@ -1,7 +1,7 @@
 const userModel = require('../models/user');
 
 const test = ( req, res, next ) => {
-    res.json({message: "Hello!"}); // Checking if the Api is working
+    res.json({message: "Vegeta's Final Flash!"}); // Check if the Api is working
 }
 
 const signup = async ( req, res ) => {
