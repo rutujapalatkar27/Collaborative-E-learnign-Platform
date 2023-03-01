@@ -13,6 +13,9 @@ import Box from '@mui/material/Box';
 import AssuredWorkloadOutlinedIcon from '@mui/icons-material/AssuredWorkloadOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { backendURL } from '../utils/config';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright(props) {
@@ -31,14 +34,33 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       rt: data.get('registration-type'),
+      username: data.get('username'),
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    axios.post(`${backendURL}/signup`, {
+      'type': data.get('registration-type'),
+      'username': data.get('username'),
+      'email': data.get('email'),
+      'password': data.get('password')
+    })
+    .then((response) => {
+      if(response.status === 200) {
+        console.log("User created successfully: ", response.data);
+        navigate('/signin');
+      }
+    })
+    .catch((error) => {
+      console.log("Error: ", error);
+      alert("Signup Failed!");
+    })
   };
 
   return (
@@ -60,6 +82,16 @@ export default function SignUp() {
             Register
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="User Name"
+              name="username"
+              autoComplete="username"
+              autoFocus
+            />
             <TextField
               margin="normal"
               required
