@@ -29,7 +29,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  let navigate = useNavigate();
+//   let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -45,7 +45,10 @@ export default function SignIn() {
       .then((response) => {
         if(response.status === 200) {
           console.log("User logedin successfully: ", response.data);
-          //navigate('/home');
+        //   localStorage.setItem('email', response.data.email);
+        //   localStorage.setItem('username', response.data.username);
+        //   localStorage.setItem('type', response.data.type);
+        //   navigate('/home');
         }
       })
       .catch((error) => {

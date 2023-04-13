@@ -6,13 +6,18 @@ const port = 8000;
 const mongoDB = require('../database/config.json');
 var mongo = mongoDB.mongoURI;
 const mongoose = require('mongoose');
+const url = require('url');
+const shareDB = require('sharedb');
+const WebSocket = require('ws');
+const WebSocketJSONStream = require('@teamwork/websocket-json-stream');
+const share = new shareDB({ presence: true });
 const WEB_URL = "http://localhost:3000"
 
 app.use(cors({credentials: true, origin: WEB_URL}));
 app.use(express.json()); 
 
 app.use(session({
-    secret              : 'sush-cep',
+    secret              : 'Collab-E-Learning-Platform',
     resave              : false, // Forces the session to be saved back to the session store, even if the session was never modified during the request
     saveUninitialized   : false, // Force to save uninitialized session to db. A session is uninitialized when it is new but not modified.
     duration            : 60 * 60 * 1000,    // Overall duration of Session : 30 minutes : 1800 seconds
@@ -46,4 +51,41 @@ app.use(function(req, res, next) {
 const userRouter = require('../routers/userRouter');
 app.use('/', userRouter);
 
-app.listen(port, () => console.log("Listening on port " + port));
+const wss = new WebSocket.Server({ noServer: true });
+wss.on('connection', ws => {
+    const stream = new WebSocketJSONStream(ws);
+    stream.on('error', error => {
+        console.log(error.message);
+    });
+    share.listen(stream);
+});
+
+const connection = share.connect();
+
+const server = app.listen(port, () => console.log("Listening on port " + port));
+
+server.on('upgrade', (request, socket, head) => {
+    const pathname = url.parse(request.url).pathname;
+    if(pathname === '/bar') {
+        wss.handleUpgrade(request, socket, head, (ws) => {
+            wss.emit('connection', ws);
+        });
+    } else {
+        socket.destroy();
+    }
+});
+
+
+app.post('/code', (req, res) => {
+    console.log("Inside code:", req.body.id);
+    let id = req.body.id;
+    const doc = connection.get('examples', id);
+    doc.fetch(err => {
+        if (err) throw err;
+        if (doc.type == null) {
+            doc.create({ content: ' ', output: [''], input: [''], lang: [''] });
+            return;
+        }
+    });
+    res.send('Document created');
+});
