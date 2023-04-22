@@ -1,38 +1,148 @@
-.App {
-  text-align: center;
+.homePageWrapper{
+    height:100vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.formWrapper{
+    background-color: #2b3031;
+    padding: 20px;
+    border-radius: 10px;
+    width:500px;
+    max-width: 90%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.mainLabel {
+    margin-bottom: 20px;
+    margin-top: 0;
 }
 
-.App-link {
-  color: #61dafb;
+
+.inputBox {
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    margin-bottom: 14px;
+    background: #eee;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.joinBtn,
+.leaveBtn {
+    background: #f97777f2;
+    width: 100px;
+    margin-left: auto;
+}
+
+.codeAln {
+    background: #0ed4ee;
+    width: 100px;
+    margin-left: auto;
+}
+
+.logout {
+    background: #3d2e1f;
+    width: 100px;
+    margin-left: auto;
+}
+
+.joinBtn:hover,
+.leaveBtn:hover {
+    background: #ff4e4e;
+}
+
+.createInfo {
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.createNewBtn {
+    color: #7b77f9f2;
+    text-decoration: none;
+    border-bottom: 1px solid #9af569f2;
+    transition: all 0.3s ease-in-out;
+}
+
+.createNewBtn:hover,
+footer a:hover {
+    color: #ff4e4e;
+    border-color: #ff4e4e;
+}
+
+.mainWrap {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+}
+
+.aside {
+    background: #1c1e29;
+    padding: 16px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+.asideInner {
+    flex: 1;
+}
+
+.clientsList {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.client {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold;
+}
+.userName {
+    margin-top: 10px;
+}
+
+
+.leaveBtn {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.codeAln {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.logout {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.CodeMirror {
+    min-height: calc(100vh - 20px);
+    font-size: 20px;
+    line-height: 1.6;
+    padding-top: 20px;
 }
