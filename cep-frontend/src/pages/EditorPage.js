@@ -82,7 +82,7 @@ const EditorPage = () => {
     }
 
     function leaveRoom() {
-        reactNavigator('/');
+        reactNavigator('/home');
     }
 
     function localCode() {

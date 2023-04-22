@@ -22,6 +22,7 @@ function compile() {
 	axios.post(`${backendURL}/code/run`, {
 	code: userCode,
 	language: "python",
+    id: localStorage.getItem('username'),
 	input: userInput 
     })
     .then((res) => {
