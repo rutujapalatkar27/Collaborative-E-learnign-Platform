@@ -8,7 +8,7 @@ var mongo = mongoDB.mongoURI;
 const mongoose = require('mongoose');
 
 
-const WEB_URL = "http://localhost:3001"
+const WEB_URL = "http://localhost:3000"
 
 app.use(cors({credentials: true, origin: WEB_URL}));
 app.use(express.json()); 
@@ -48,7 +48,8 @@ app.use(function(req, res, next) {
 const userRouter = require('../routers/userRouter');
 app.use('/', userRouter);
 
-
+const filesRouter = require('../controllers/filesController')
+app.use('/files', filesRouter);
 
 const server = app.listen(port, () => console.log("Listening on port " + port));
 
