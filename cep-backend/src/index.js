@@ -48,7 +48,8 @@ app.use(function(req, res, next) {
 const userRouter = require('../routers/userRouter');
 app.use('/', userRouter);
 
-
+const filesRouter = require('../controllers/filesController')
+app.use('/files', filesRouter);
 
 const server = app.listen(port, () => console.log("Listening on port " + port));
 
