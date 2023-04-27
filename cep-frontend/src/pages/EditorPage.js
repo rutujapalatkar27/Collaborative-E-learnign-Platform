@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { Grid } from '@material-ui/core';
+import PdfViewer from './PdfViewer';
 import ACTIONS from '../utils/Actions';
 import Client from '../components/Client';
 import Editor from '../components/Editor';
@@ -102,6 +104,11 @@ const EditorPage = () => {
     }
 
     return (
+        <Grid container spacing={0}>
+        <Grid item xs={6}>
+          <PdfViewer />
+        </Grid>
+        <Grid item xs={6}>
         <div className="mainWrap">
             <div className="aside">
                 <div className="asideInner">
@@ -138,6 +145,9 @@ const EditorPage = () => {
                 />
             </div>
         </div>
+        </Grid>
+      </Grid>
+        
     );
 };
 

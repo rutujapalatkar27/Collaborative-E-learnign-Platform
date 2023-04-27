@@ -8,7 +8,7 @@ var mongo = mongoDB.mongoURI;
 const mongoose = require('mongoose');
 
 
-const WEB_URL = "http://localhost:3000"
+const WEB_URL = "http://localhost:3001"
 
 app.use(cors({credentials: true, origin: WEB_URL}));
 app.use(express.json()); 

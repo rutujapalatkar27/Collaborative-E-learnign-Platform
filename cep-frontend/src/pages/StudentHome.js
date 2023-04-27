@@ -79,7 +79,6 @@ function InstructorHome() {
         const username = localStorage.getItem("username")
         const sessionId = uuidV4();
         try {
-            console.log(fileUrl)
             const response = await axios.post(`${backendURL}/sessions`, {
               sessionId,
               fileUrl,
