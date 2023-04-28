@@ -129,7 +129,7 @@ const EditorPage = () => {
                     Local Code
                 </button>
                 <button className="btn leaveBtn" onClick={leaveRoom}>
-                    Leave
+                    Leave Room
                 </button>
                 <button className="btn logout" onClick={logout}>
                     Logout
