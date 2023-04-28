@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import PdfViewer from './PdfViewer';
 import ACTIONS from '../utils/Actions';
 import Client from '../components/Client';

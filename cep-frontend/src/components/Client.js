@@ -1,10 +1,10 @@
 import React from 'react';
-import Avatar from 'react-avatar';
+import Avatar, {ConfigProvider} from 'react-avatar';
 
 const Client = ({ username }) => {
     return (
         <div className="client">
-            <Avatar name={username} size={45} round="12px" />
+            <Avatar name={username} size={35} round="15px" />
             <span className="userName">{username}</span>
         </div>
     );

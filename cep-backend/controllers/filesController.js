@@ -19,7 +19,6 @@ router.post("/upload", upload.single("filename"), async (req, res) => {
         const filesize = req.file.size / (1024*1024)
         const filesizeInMB = `${filesize.toFixed(2)} MB`
         console.log(filesizeInMB)
-
         const storageRef = ref(storage, `files/${req.file.originalname + "       " + dateTime}`);
 
         const metadata = {
@@ -57,9 +56,9 @@ const giveCurrentDateTime = () => {
     return dateTime;
 }
 
-router.get("/fetch", async (req, res) => {
+router.post("/fetch", async (req, res) => {
     const userEmail = req.body.email;
-
+    // console.log(req.body.email)
     try {
         const userFiles = await files.findOne({ userEmail });
 

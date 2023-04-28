@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@material-ui/core';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import TextField from '@material-ui/core/TextField';
+import { styled } from '@mui/system';
+import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import TextField from '@mui/material/TextField';
 import { backendURL } from '../utils/config';
 import axios from 'axios';
 import Header from './Header';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidV4 } from 'uuid';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = styled((theme) => ({
     root: {
         maxWidth: 345,
         margin: '0 auto',
@@ -41,7 +41,7 @@ function InstructorHome() {
     useEffect(() => {
         const fetchFiles = async () => {
             try {
-                const response = await axios.get(`${backendURL}/files/fetch`, { data: { email: userEmail } });
+                const response = await axios.post(`${backendURL}/files/fetch`, { email: userEmail });
                 setFiles(response.data);
                 console.log(response)
             } catch (error) {
@@ -60,14 +60,12 @@ function InstructorHome() {
         const file = event.target.files[0];
         const formData = new FormData();
         formData.append('filename', file);
+        formData.append('email', userEmail);
         try {
             const response = await axios.post(`${backendURL}/files/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
-                params: {
-                    userEmail
-                }
             });
             setNewFile(file)
         } catch (error) {
