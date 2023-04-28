@@ -26,10 +26,11 @@ const compile = ( req, res, next ) => {
     exec(command[lang], (error, stdout, stderr) => {
         codeHelper.removeDir(id);
         if (stderr) {
-
-            res.status(400).json(stderr);
+            res.send(stderr);
+            return
         }
         else
+        console.log("Output: ", stdout);
             res.send(stdout);
     });
 }

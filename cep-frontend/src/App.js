@@ -6,7 +6,6 @@ import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
 import EditorPage from "./pages/EditorPage";
 import CompilePage from "./pages/CompilePage";
-import PdfViewer from './pages/PdfViewer';
 
 function App() {
   return (
@@ -34,7 +33,7 @@ function App() {
         ></Route>
         <Route path="/editor/run" element={<CompilePage />} />
 
-        <Route path="/pdf-viewer" element={<PdfViewer/>} />
+        {/* <Route path="/pdf-viewer" element={<PdfViewer/>} /> */}
       </Routes>
     </>
   );
