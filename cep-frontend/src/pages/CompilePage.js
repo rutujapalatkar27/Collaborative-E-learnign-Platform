@@ -2,10 +2,13 @@ import { useState } from 'react';
 import './CompilePage.css';
 import Editor from "@monaco-editor/react";
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { CircularProgress, LinearProgress } from '@mui/material';
+import { Skeleton } from '@mui/material';
+import Header from './Header';
 import { backendURL } from '../utils/config';
 
-function App() {
+function CompilePage() {
 const [userCode, setUserCode] = useState(``);
 const [userInput, setUserInput] = useState("");
 const [userOutput, setUserOutput] = useState("");
@@ -40,10 +43,12 @@ function clearOutput() {
 }
 
 function returnCollab() {
-	navigate('/home')
+	navigate(-1)
 }
 
 return (
+	<div>
+		<Header />
 	<div className="CompilePage">
 	<div className="main">
 		<div className="left-container">
@@ -69,10 +74,12 @@ return (
 		</div>
 		<h4>Output:</h4>
 		{loading ? (
-			// <div className="spinner-box">
-			// <img src={spinner} alt="Loading..." />
-			// </div>
-            <h3>Loading...</h3>
+			<div>
+			<CircularProgress color = "warning"/>
+            <h4>Loading...</h4>
+			<LinearProgress color="primary"/>
+			<Skeleton animation="pulse" sx={{ bgcolor: 'darkgrey' }} variant="rectangular" height={128} />
+			</div>
 		) : (
 			<div className="output-box">
 			<pre>{userOutput}</pre>
@@ -89,7 +96,8 @@ return (
 		</div>
 	</div>
 	</div>
+	</div>
 );
 }
 
-export default App;
+export default CompilePage;

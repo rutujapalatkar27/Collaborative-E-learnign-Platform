@@ -4,13 +4,14 @@ import toast from 'react-hot-toast';
 import { Navigate, useNavigate } from 'react-router-dom';
 import InstructorHome from './InstructorHome'
 import axios from 'axios';
+import Header from './Header';
 import { backendURL } from '../utils/config';
 
 const Home = () => {
     const navigate = useNavigate();
 
     const [roomId, setRoomId] = useState('');
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState(localStorage.getItem('username'));
     const [fileUrl2, setFileUrl2] = useState('')
     const createNewRoom = (e) => {
         e.preventDefault();
@@ -67,9 +68,11 @@ const Home = () => {
                 <InstructorHome />
 
             ) : (localStorage.getItem('type') === 'Student') ? (
+                <div >
+                    <Header />
                 <div className="homePageWrapper">
                     <div className="formWrapper">
-                        <h4 className="mainLabel">ROOM ID</h4>
+                        <h4 className="mainLabel">Enter Room ID</h4>
                         <div className="inputGroup">
                             <input
                                 type="text"
@@ -82,7 +85,7 @@ const Home = () => {
                             <input
                                 type="text"
                                 className="inputBox"
-                                placeholder="USERNAME"
+                                placeholder={localStorage.getItem('username')}
                                 onChange={(e) => setUsername(e.target.value)}
                                 value={username}
                                 onKeyUp={handleInputEnter}
@@ -92,6 +95,7 @@ const Home = () => {
                             </button>
                         </div>
                     </div>
+                </div>
                 </div>
             ) : (
                 <Navigate replace to='/signin' />
